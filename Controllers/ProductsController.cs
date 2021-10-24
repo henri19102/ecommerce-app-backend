@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ecommerce_app_backend.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace ecommerce_app_backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors]
+
     public class ProductsController : ControllerBase
     {
         private readonly ProductContext _context;
