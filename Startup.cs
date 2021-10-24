@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using ecommerce_app_backend.Models;
 
 namespace ecommerce_app_backend
 {
@@ -28,10 +30,12 @@ namespace ecommerce_app_backend
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ecommerce_app_backend", Version = "v1" });
-            });
+            services.AddDbContext<ProductContext>(opt =>
+                                               opt.UseInMemoryDatabase("TodoList"));
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoApi", Version = "v1" });
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,8 +44,8 @@ namespace ecommerce_app_backend
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ecommerce_app_backend v1"));
+                //app.UseSwagger();
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ecommerce_app_backend v1"));
             }
 
             app.UseHttpsRedirection();
